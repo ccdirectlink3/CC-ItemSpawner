@@ -1,7 +1,4 @@
-declare const itemSpawner;
-declare const require;
-
-var fs = require('fs');
+const fs = require('fs') as typeof import('fs');
 
 import { ItemDatabase } from './itemDatabase.js';
 import { Item } from './model/item.js';
@@ -68,12 +65,14 @@ $("#searchText").on('keyup change', function(evt) {
 });
 
 
+declare function externalSpawnItem(item: number, amount?: number, hidden?: boolean);
+
 /**
  * Spawns an item.
  * @param item Item to spawn. Must have 'index' set.
  */
 function spawn(item : Item) {
-  itemSpawner.spawn(item.index, 1);
+  externalSpawnItem(item.index, 1);
   sounds.getSound('submit').play();
 }
 

@@ -1,14 +1,15 @@
 {
      "name": "item-spawner",
      "version": "1.0.0",
-     "main": "mod.js",
      "scripts": {
           "build": "npm run clean && tsc && npm run copy",
           "clean": "node ./scripts/clean.js",
           "copy": "node ./scripts/copy.js"
      },
      "devDependencies": {
-          "@types/jquery": "^3.3.14",
-          "@types/node": "^10.11.6"
+          "@types/jquery": "^3.3.38",
+          "@types/node": "^14.0.13",
+          "typescript": "^3.9.5",
+          "fs-extra": "^9.0.1"
      }
 }

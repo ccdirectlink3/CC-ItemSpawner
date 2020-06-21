@@ -1,25 +1,25 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 
-const copy = (a, b) => { fs.copyFile(a, b, err => { if (err) throw err; });};
-const mkdir = d => { if (!fs.existsSync(`dist/${d}`)) { fs.mkdirSync(`dist/${d}`); }};
-const recurse = d => { fs.readdirSync(d).forEach(f => { copy(`${d}/${f}`, `dist/${d}/${f}`); }); };
+fs.mkdirpSync('dist');
+
+console.log('Copying JS...');
+fs.copySync('js', 'dist/js');
 
 // HTML
 console.log('Copying HTML...');
-copy('index.html', 'dist/index.html');
+fs.copySync('index.html', 'dist/index.html');
 
 // CSS
 console.log('Copying CSS...');
-mkdir('css');
-recurse('css');
+fs.copySync('css', 'dist/css');
 
 // Images
-mkdir('img');
-recurse('img');
+console.log('Copying image...');
+fs.copySync('img', 'dist/img');
 
 // CCLoader package
-console.log('Copying package.json...');
-copy('cc-package.json', 'dist/package.json');
-copy('cc-mod.js', 'dist/mod.js');
+console.log('Copying ccmod.json...');
+fs.copySync('ccmod.json', 'dist/ccmod.json');
+fs.copySync('poststart.js', 'dist/poststart.js');
 
 console.log('Done copying files!');
